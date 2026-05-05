@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mikara ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background: black;
+  overflow-x: hidden;
+}
+
+/* BACKGROUND - LIGHTER TINT */
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url('mikara-bg.jpg') center/cover no-repeat;
+  filter: blur(6px) brightness(0.75); /* Less blur + brighter so photo shows through */
+  transform: scale(1.1);
+  z-index: -2;
+}
+
+/* OVERLAY - SUBTLE PINK */
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 30%, rgba(255,0,150,0.04), rgba(0,0,0,0.35) 70%); /* Very light pink + less dark */
+  z-index: -1;
+}
+
+/* INTRO */
+#intro {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  text-align: center;
+  animation: introAnim 6s forwards;
+  padding: 30px;
+  line-height: 1.4;
+  text-shadow: 0 0 30px rgba(0,0,0,0.9), 0 0 15px hotpink; /* Stronger shadow for readability on bright bg */
+}
+
+@keyframes introAnim {
+ 0% {opacity:0; transform: scale(0.6);}
+ 25% {opacity:1;}
+ 75% {opacity:1;}
+ 100% {opacity:0; transform: scale(1.4);}
+}
+
+/* SECTION */
+.section {
+  min-height: 100vh;
+  padding: 90px 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* TITLES */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 5.5em;
+  text-shadow: 0 0 30px rgba(0,0,0,0.9), 0 0 25px hotpink, 0 0 50px purple; /* Added black shadow for contrast */
+  margin: 0 0 20px;
+}
+
+h2 {
+  font-size: 2em;
+  opacity: 0.95;
+  margin: 0 0 30px;
+  font-weight: 300;
+  text-shadow: 0 0 20px rgba(0,0,0,0.8); /* Added shadow for readability */
+}
+
+/* IMAGE WITH GLOW */
+.img-wrap {
+  position: relative;
+  display: inline-block;
+  margin: 30px auto;
+}
+
+.img-wrap::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110%;
+  height: 110%;
+  background: radial-gradient(circle, rgba(255,105,180,0.6) 0%, rgba(186,85,211,0.3) 40%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+  animation: glowPulse 4s ease-in-out infinite;
+  z-index: 0;
+}
+
+.main-img {
+  position: relative;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 28px;
+  box-shadow: 0 0 60px rgba(255,105,180,0.7), 0 0 120px rgba(186,85,211,0.4);
+  animation: floatImg 5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes glowPulse {
+ 0%, 100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+ 50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+@keyframes floatImg {
+ 0%,100% {transform: translateY(0);}
+ 50% {transform: translateY(-20px);}
+}
+
+/* MESSAGE */
+.message {
+  max-width: 900px;
+  margin: auto;
+  line-height: 2em;
+  font-size: 1.4em;
+  padding: 0 10px;
+  text-shadow: 0 0 20px rgba(0,0,0,0.85); /* Stronger shadow so text stays readable on bright bg */
+}
+
+/* BUTTONS */
+.button-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+button {
+  padding: 20px 40px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(45deg, #ff6ec4, #ff1493);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.3em;
+  box-shadow: 0 0 25px rgba(255,105,180,0.8);
+  transition: 0.3s;
+  width: 90%;
+  max-width: 400px;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+#noBtn {
+  position: absolute;
+  background: linear-gradient(45deg, #666, #999);
+  box-shadow: 0 0 15px rgba(200,200,200,0.5);
+}
+
+/* RING */
+#ring {
+  font-size: 7em;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.8s;
+  margin-top: 30px;
+  filter: drop-shadow(0 0 30px gold);
+}
+
+/* PROPOSAL */
+#proposal {
+  opacity: 0;
+  font-size: 1.8em;
+  margin-top: 30px;
+  min-height: 60px;
+  padding: 0 20px;
+  text-shadow: 0 0 20px rgba(0,0,0,0.9), 0 0 15px hotpink; /* Stronger shadow for readability */
+}
+
+/* HEARTS + CONFETTI */
+.heart,.confetti {
+  position: fixed;
+  z-index: 10;
+}
+
+.heart {
+  animation: float 6s linear infinite;
+  font-size: 1.5em;
+  filter: drop-shadow(0 0 8px hotpink);
+}
+
+@keyframes float {
+  from {transform: translateY(110vh);}
+  to {transform: translateY(-15vh);}
+}
+
+.confetti {
+  width: 12px;
+  height: 12px;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to {transform: translateY(110vh) rotate(360deg);}
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+  #intro {
+    font-size: 2.2em;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 4em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+.message {
+    font-size: 1.25em;
+    line-height: 1.9em;
+    padding: 0 5px;
+  }
+
+.section {
+    padding: 70px 20px;
+  }
+
+  button {
+    font-size: 1.4em;
+    padding: 22px 30px;
+  }
+
+  #ring {
+    font-size: 6em;
+  }
+
+  #proposal {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 3.2em;
+  }
+.message {
+    font-size: 1.15em;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<!-- INTRO -->
+<div id="intro">
+💥 It’s finally the 11th of May 💥<br>
+Mikara… today is yours ❤️😈
+</div>
+
+<!-- MAIN -->
+<div class="section">
+  <h1>Happy Birthday 💖</h1>
+  <h2>Mikara, my girl</h2>
+
+  <!-- WRAP IMAGE FOR GLOW EFFECT -->
+  <div class="img-wrap">
+    <img src="mikara-edited.jpg" class="main-img" alt="Mikara">
+  </div>
+
+  <div class="message">
+    Mikara… ❤️😈<br><br>
+    Happy birthday to the girl who changed the way my world feels.<br><br>
+    You’re not just beautiful… you’re dangerous in the best way. The way you exist in my life just pulls me in deeper every time I think about you.<br><br>
+    You’ve become my peace and my chaos. My comfort and my weakness. My calm nights and my loud thoughts.<br><br>
+    And honestly… I wouldn’t change that for anything.<br><br>
+    Nobody replaces you. Nobody comes close.<br><br>
+    I don’t want “better.” I don’t want temporary. I don’t want anything less than what I feel when it’s you.<br><br>
+    I want *you*… fully, deeply, completely. 😈❤️<br><br>
+    If I had to choose again in another life, I’d still find you. Still choose you. Still fall for you every time.<br><br>
+    You’re not just important to me…<br>
+    You’re everything.
+  </div>
+</div>
+
+<!-- GIFT -->
+<div class="section">
+  <h1>🎁 Final Moment 🎁</h1>
+
+  <div class="button-wrap">
+    <button onclick="openGift()">Open it 😈🎁</button>
+    <button id="noBtn" onmouseover="moveBtn()" ontouchstart="moveBtn()">Don’t open… if you can 😏</button>
+  </div>
+
+  <div id="ring">💍</div>
+  <div id="proposal"></div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop playsinline>
+  <source src="mikara-song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function playMusic() {
+  document.getElementById("music").play().catch(()=>{});
+}
+document.body.addEventListener("click", playMusic, { once: true });
+document.body.addEventListener("touchstart", playMusic, { once: true });
+
+function moveBtn() {
+  const btn = document.getElementById("noBtn");
+  const maxX = window.innerWidth - btn.offsetWidth - 20;
+  const maxY = window.innerHeight - btn.offsetHeight - 20;
+  btn.style.top = Math.random()*maxY+"px";
+  btn.style.left = Math.random()*maxX+"px";
+}
+
+function typeText(text, el, speed=45) {
+  let i = 0;
+  el.innerHTML = "";
+  function t() {
+    if (i < text.length) {
+      el.innerHTML += text[i];
+      i++;
+      setTimeout(t, speed);
+    }
+  }
+  t();
+}
+
+function openGift() {
+  for (let i=0;i<180;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background = `hsl(${Math.random()*60+300}, 100%, 70%)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3500);
+  }
+
+  let ring=document.getElementById("ring");
+  ring.style.opacity=1;
+  ring.style.transform="scale(1.8)";
+
+  let proposal=document.getElementById("proposal");
+  proposal.style.opacity=1;
+
+  typeText("Will you stay with me forever, Mikara? ❤️😈", proposal);
+}
+
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerText="❤️";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},300);
+</script>
+
+</body>
+</html>
